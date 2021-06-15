@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<style>
+ .example {
+    padding: 20px;
+  }
+  .confirm {
+    display: none;}
+</style>
+
+<script>
+
+const ui = {
+  confirm: async (message) => createConfirm(message)
+}
+
+const createConfirm = (message) => {
+  return new Promise((complete, failed)=>{
+    $('#confirmMessage').text(message)
+
+    $('#confirmYes').off('click');
+    $('#confirmNo').off('click');
+    
+    $('#confirmYes').on('click', ()=> { $('.confirm').hide(); complete(true); });
+    $('#confirmNo').on('click', ()=> { $('.confirm').hide(); complete(false); });
+    
+    $('.confirm').show();
+  });
+}
+                     
+const save = async () => {
+  const confirm = await ui.confirm('Are you sure you want to do this?');
+  
+  if(confirm){
+    alert('yes clicked');
+  } else{
+    alert('no clicked');
+  }
+}
+</script>
+</head>
+<body>
+
+  <div class="example">
+  <input type="button" onclick="save()" value="Save" />
+</div>
+
+
+<div class="confirm">
+  <div></div>
+  <div>
+    <div id="confirmMessage">Confirm text</div>
+    <div>
+      <input id="confirmYes" type="button" value="Yes" />
+      <input id="confirmNo" type="button" value="No" />
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
