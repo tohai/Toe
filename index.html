@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html>
-<header>
+<head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="uae.js"></script>
-<link rel="stylesheet" href="home.css">
-</header>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+function confirm(){
+    $("#dialog-confirm").dialog({
+        resizable: false,
+        draggable: false,
+        height:140,
+        modal: false,
+        buttons: {
+            "Close": function() {
+                $( this ).dialog("close");
+                return true;
+            }
+        }
+    });
+    $(".ui-dialog-titlebar").hide();
+}
+
+function aloha() {
+  if(confirm()) {
+    alert("ok chowi dduwowcj")
+  }
+
+}
+
+function do_function(params){
+    console.log('approved');
+}
+</script>
+</head>
 <body>
 
-<div class="example">
-  <input type="button" onclick="save()" value="Save" />
-</div>
-
-
-<div class="confirm">
-  <div></div>
-  <div>
-    <div id="confirmMessage">Confirm text</div>
-    <div>
-      <input id="confirmYes" type="button" value="Yes" />
-      <input id="confirmNo" type="button" value="No" />
-    </div>
+  <a href="#" onclick="aloha()">Confirm</a>
+  <div id="dialog-confirm" style="display:none;">
+      <p>Are you sure you want to do this?</p>
+      <p>Are you sure you want to do this?</p>
   </div>
-</div>
 
 </body>
+</html>
 </html>
